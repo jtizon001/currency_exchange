@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 jsonExample = {"base":"USD","target":"CNY","amount":"100"}
 
-@app.route('/', methods=['POST'])
+@app.route('/index', methods=['POST'])
 def index():
 	if request.headers['Content-Type'] == 'application/json':
 		forXargs=request.get_json()
