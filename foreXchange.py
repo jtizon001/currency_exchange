@@ -1,6 +1,8 @@
 from forex_python.converter import CurrencyRates
+from forex_python.bitcoin import BtcConverter
 
 c=CurrencyRates()
+b=BtcConverter()
 
 def main():
 	base = input('base currency: ').upper()
@@ -34,6 +36,17 @@ def convertAmount(x,y,z):
 
 	print(y+': --'+str(req))
 	return float(req)
+
+
+def convertBit(x,y,z):
+	if (x=='BTC'):
+		req=b.get_latest_price(y)
+		return (z*req)
+
+	elif(y=='BTC'):
+		req=b.convert_to_btc(z,x)
+		return req
+
 
 
 

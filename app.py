@@ -7,23 +7,27 @@ app = Flask(__name__)
 
 jsonExample = {"base":"USD","target":"CNY","amount":"100"}
 
-@app.route('/') #methods=['POST'])
+@app.route('/', methods=['POST'])
 def index():
-	#return "hello work"
-	x=str(foreXchange.convertAmount('USD','CNY',100))
-	return jsonify({'exchange':x})
-	#return  "Hello Worlbuilbd!"
-	#if request.headers['Content-Type']=='applications/json':
-	#	currArgs=request.get_json()
-	#	argues=currArgs['currencies']
-		# exchangCurr= foreXchange.convertAmount('USD','CNY',100) #run the other thing
-		# dicto = {"Rates":exchangCurr}
-		# print(dicto)
-		# return dicto
-
-		# response=jsonify(dicto)
-		# return response
+	if request.headers['Content-Type'] == 'application/json':
+		forXargs=request.get_json()
+		base=forXargs['base'].upper()
+		print(base)
+		target=forXargs['target'].upper()
+		amount=int(forXargs['amount'])
+		x=0
+		if (base=="BTC" or target=="BTC"):
+			x=foreXchange.convertBit(base,target,amount)
+		else:
+			x=foreXchange.convertAmount(base,target,amount)
+		dicto={"rate":x}
+		response=jsonify(dicto)
+		return response
 
 
 if __name__ == '__main__':
 	app.run(debug=True)
+
+
+# when testing use 
+# curl -H "Content-Type: application/json" -X POST -d '{"base":"btc","target":"usd","amount":"100"}' http://localhost:5000/
