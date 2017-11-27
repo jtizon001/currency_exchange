@@ -30,4 +30,4 @@ if __name__ == '__main__':
 
 
 # when testing use 
-# curl -H "Content-Type: application/json" -X POST -d '{"base":"btc","target":"usd","amount":"100"}' http://localhost:5000/
+# curl -H "Content-Type: application/json" -X POST -d '{"base":"btc","target":"usd","amount":"100"}' http://localhost:5000/index
