@@ -14,7 +14,7 @@ alert("hello");
 
     $.ajax({
       type: "POST",
-      url: "http://localhost:5000/index",
+      url: "http://localhost:5000/getData",
       // dataType: "JSON",
       // data: {"base":"btc","target":"usd","amount":"100"},
       data: {"d": dataObject},
