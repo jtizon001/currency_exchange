@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 jsonExample = {"base":"USD","target":"CNY","amount":"100"}
 
-@app.route('/index', methods=['POST'])
-def index():
+@app.route('/getData', methods=['POST'])
+def getData():
 	if request.headers['Content-Type'] == 'application/json':
 		forXargs=request.get_json()
 		base=forXargs['base'].upper()
@@ -24,9 +24,18 @@ def index():
 		response=jsonify(dicto)
 		return response
 
+@app.route('/index',methods['GET','POST']) 
+	def index():
+		x= open('index.html')
+		return x.read()
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
+
+
+# when testing use 
+# curl -H "Content-Type: application/json" -X POST -d '{"base":"btc","target":"usd","amount":"100"}' http://localhost:5000/getData
 
 
 # when testing use 
