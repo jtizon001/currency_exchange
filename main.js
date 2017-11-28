@@ -9,19 +9,23 @@ alert("hello");
   $( document.getElementById('button1') ).click(function() {
     alert("you clicked");
 
-    var dataObject = $('form').serialize()
+    var dataObject = $('form').serialize();
+    console.log(dataObject);
 
     $.ajax({
-      dataType: "JSON",
       type: "POST",
       url: "http://localhost:5000/index",
-      data: {"base":"btc","target":"usd","amount":"100"},
-      // data: {dataObject},
-      error: function(){
+      // dataType: "JSON",
+      // data: {"base":"btc","target":"usd","amount":"100"},
+      data: {"d": dataObject},
+      error: function(response){
         console.log("error");
+        alert("error");
       },
-      success: function(){
-        console.log("success");
+      success: function(response){
+        console.log(response);
+        alert(response);
+        // $( document.getElementById('resultDiv') ).html(response);
       }
 
     }).done(function( ) {
@@ -29,7 +33,8 @@ alert("hello");
       console.log("done");
 
     });
-    alert("you clicked 2");
+
+    alert("2");
 
  
   });
