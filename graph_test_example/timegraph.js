@@ -30,6 +30,7 @@ $(document).ready(function() {
 		}
 	});
 	
+	// Not sure if necessary, just something extra
 	$("#chart").append($("<button id='show'>Show (currency2)</button>"));
 	$("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
 	document.getElementById('show').addEventListener('click', function() {
