@@ -6,7 +6,8 @@
 
 body {
   padding-top: 54px;
-}
+/*  font-family: : helvetica !important;
+*/}
 
 @media (min-width: 992px) {
   body {
@@ -14,6 +15,18 @@ body {
   }
 }
 
+/*.navbar-toggler{
+  font-family: : helvetica !important;
+}*/
+
 .card {
   height: 100%;
+}
+
+.navbar-brand{
+  color: lightgreen !important;
+}
+
+a{
+  color: lightgreen !important;
 }
