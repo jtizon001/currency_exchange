@@ -29,5 +29,14 @@ $(document).ready(function() {
 			}
 		}
 	});
+	
+	$("#chart").append($("<button id='show'>Show (currency2)</button>"));
+	$("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
+	document.getElementById('show').addEventListener('click', function() {
+		chart.show(['currency2'])
+	});
+	document.getElementById('hide').addEventListener('click', function() {
+		chart.hide(['currency2'])
+	});
 
 });
