@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-alert("hello");
+//alert("hello");
 
 //use ajax to fetch data from the python file "app.py"
 
