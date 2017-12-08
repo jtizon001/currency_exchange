@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "https://jtizon001.github.io/getData",
+      url: "https://jtizon001.github.io/getData/",
       // dataType: "JSON",
       // data: {"base":"btc","target":"usd","amount":"100"},
       data: {"d": dataObject},
