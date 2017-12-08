@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-//alert("hello");
+// alert("hello");
 
 //use ajax to fetch data from the python file "app.py"
 
@@ -14,17 +14,17 @@ $(document).ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "http://localhost:5000/getData",
+      url: "https://jtizon001.github.io/getData",
       // dataType: "JSON",
       // data: {"base":"btc","target":"usd","amount":"100"},
       data: {"d": dataObject},
       error: function(response){
-        console.log("error");
-        alert("error");
+        console.log("error in ajax call");
+        alert("error in ajax call");
       },
       success: function(response){
-        console.log(response);
-        alert(response);
+        console.log("success: " + response);
+        alert("success: " + response);
         // $( document.getElementById('resultDiv') ).html(response);
       }
 
