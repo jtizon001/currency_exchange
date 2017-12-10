@@ -13,8 +13,6 @@ $(document).ready(function () {
     $(this).select(); 
   });
 
-  
-
 
 // _________________________ ajax call for conversion _______________________________________________________
 
@@ -24,7 +22,16 @@ $(document).ready(function () {
 
     var dataObject = $('form').serialize();
 
-    var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + dataObject[16] + dataObject[17] + dataObject[18] + '","amount":"100"}';
+    indexOfStartOfNumber = dataObject.length - 18;
+
+    var target = dataObject.substring(dataObject[dataObject.length - 4], dataObject[dataObject.length - 1]);
+    console.log(target);
+
+    number = dataObject.substring(dataObject[indexOfStartOfNumber], dataObject[dataObject.length - 1]);
+
+    console.log(number);
+
+    var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + target + '","amount":"100"}';
 
     console.log(dataObject);
     console.log(newDataObject);
@@ -73,10 +80,10 @@ $(document).ready(function () {
     
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
-
 //jquery UI thing that might be useful here
-    // $( "#date" ).datepicker();
+    // var dateVar =  $( "#date" ).datepicker();
+
+    $( document.getElementsByClassName('content-box-area') ).append( "<div><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a date:<form enctype='application/json'><input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script></div>");
 
   });
 
@@ -111,6 +118,7 @@ $(document).ready(function () {
   $( function() {
     var availableTags = [
       "USD",
+      "EUR",
       "JPY",
       "BGN",
       "CZK",
@@ -196,7 +204,6 @@ $(document).ready(function () {
 
     });
 });
-
 
 
 
