@@ -1,8 +1,8 @@
-
 $(document).ready(function () {
 
-// alert("hello");
 
+
+// _________________________ ajax call for conversion _______________________________________________________
 
 //use ajax to fetch data from the python file "app.py"
   $( document.getElementById('button1') ).click(function() {
@@ -37,7 +37,11 @@ $(document).ready(function () {
 
  
   });
- 
+
+
+
+
+// _________________________ content box stuff _______________________________________________________
 
   $( document.getElementById('go-1') ).click(function() {
     $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
@@ -58,6 +62,20 @@ $(document).ready(function () {
     $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
 
   });
+
+
+
+// _________________________ autocomplete _______________________________________________________
+
+  $( function() {
+    var availableTags = [
+      "usd",
+      "eur"
+    ];
+    $("#basecurr").autocomplete({
+      source: availableTags
+    });
+  } );
 
 
 });
