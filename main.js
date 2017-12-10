@@ -1,6 +1,20 @@
 $(document).ready(function () {
 
 
+  $( document.getElementById("baseCurr") ).click(function() {
+    $(this).select(); 
+  });
+
+  $( document.getElementById("targetCurr") ).click(function() {
+    $(this).select(); 
+  }); 
+
+  $( document.getElementById("amount") ).click(function() {
+    $(this).select(); 
+  });
+
+  
+
 
 // _________________________ ajax call for conversion _______________________________________________________
 
