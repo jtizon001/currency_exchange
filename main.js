@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     var dataObject = $('form').serialize();
 
-    var newDataObject = "{'base':'" + dataObject[5] + dataObject[6] + dataObject[7] + "','target':'" + dataObject[16] + dataObject[17] + dataObject[18] + "','amount':'100'}";
+    var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + dataObject[16] + dataObject[17] + dataObject[18] + '","amount":"100"}';
 
     console.log(dataObject);
     console.log(newDataObject);
@@ -20,7 +20,7 @@ $(document).ready(function () {
       $.ajax({
         method: "POST",
         url: "https://jtizon001.github.io/getData/",
-        // dataType: "JSON",
+        dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
         data: newDataObject,
