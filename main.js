@@ -170,7 +170,7 @@ $(document).ready(function () {
             }
         });
 
-        /* Not sure if necessary, just something extra
+        // Not sure if necessary, just something extra
         $("#chart").append($("<button id='show'>Show (currency2)</button>"));
         $("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
         document.getElementById('show').addEventListener('click', function() {
@@ -178,7 +178,7 @@ $(document).ready(function () {
         });
         document.getElementById('hide').addEventListener('click', function() {
             chart.hide(['currency2'])
-        });*/
+        });
 
     });
 });
