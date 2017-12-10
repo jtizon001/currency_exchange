@@ -47,6 +47,9 @@ $(document).ready(function () {
     $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
     // document.getElementsByClassName('content-box').innerHTML += 'TEST 2 TEST 2'
 
+//jquery UI thing that might be useful here
+    // $( "#date" ).datepicker();
+
   });
 
   $( document.getElementById('go-2') ).click(function() {
@@ -69,10 +72,43 @@ $(document).ready(function () {
 
   $( function() {
     var availableTags = [
-      "usd",
-      "eur"
+      "USD",
+      "JPY",
+      "BGN",
+      "CZK",
+      "DKK",
+      "GBP",
+      "HUF",
+      "PLN",
+      "RON",
+      "SEK",
+      "CHF",
+      "NOK",
+      "HRK",
+      "RUB",
+      "TRY",
+      "AUD",
+      "BRL",
+      "CAD",
+      "CNY",
+      "HKD",
+      "IDR",
+      "ILS",
+      "INR",
+      "KRW",
+      "MXN",
+      "MYR",
+      "NZD",
+      "PHP",
+      "SGD",
+      "THB",
+      "ZAR",
+      "BTC",
     ];
-    $("#basecurr").autocomplete({
+    $("#baseCurr").autocomplete({
+      source: availableTags
+    });
+    $("#targetCurr").autocomplete({
       source: availableTags
     });
   } );
