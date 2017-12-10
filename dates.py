@@ -4,12 +4,12 @@ import datetime
 #script to create table of Dates to find exchange rate for any 2 currencies at some date
 #USED FOR GRAPH
 
-#in memory database, maybe make a file
+#in memory database, make a file
 conn = sqlite3.connect(":memory:")
 cursor = conn.cursor()
 
 #create table of only dates, null values for rest
-def createTable():
+def createPast5YearsTable():
 	cursor.execute('''DROP TABLE IF EXISTS "Dates";''')
 	cursor.execute("""CREATE TABLE Dates
 					(
@@ -19,10 +19,10 @@ def createTable():
 					rate real
 					);""")
 
-	today = datetime.datetime.today().strftime("%Y-%m-%d")
-	dates = [("2012-01-01"), ("2012-06-01"), ("2012-12-01"), ("2013-01-01"), ("2013-06-01"), ("2013-12-01"),
-		("2014-01-01"), ("2014-06-01"), ("2014-12-01"), ("2015-01-01"), ("2015-06-01"), ("2015-12-01"),
-		("2016-01-01"), ("2016-06-01"), ("2016-12-01"), ("2017-01-01"), ("2017-06-01"), (today)]
+	today = (datetime.datetime.today().replace(day=1)).strftime("%Y-%m-%d")
+	dates = [("2012-01-01"), ("2012-05-01"), ("2012-09-01"), ("2013-01-01"), ("2013-05-01"), ("2013-09-01"),
+		("2014-01-01"), ("2014-05-01"), ("2014-09-01"), ("2015-01-01"), ("2015-05-01"), ("2015-09-01"),
+		("2016-01-01"), ("2016-05-01"), ("2016-09-01"), ("2017-01-01"), ("2017-05-01"), ("2017-09-01"), (today)]
 
 	for i in dates:
 		cursor.execute("INSERT INTO Dates VALUES(?, NULL, NULL, NULL)", (i,))
@@ -38,33 +38,46 @@ def createYearTable():
 					rate real
 					);""")
 
-	today = datetime.datetime.today().replace(day=1)
-	dates = [(today.strftime("%Y-%m-%d")),
-			((today-datetime.timedelta(30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(2*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(3*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(4*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(5*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(6*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(7*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(8*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(9*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(10*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(11*30)).replace(day=1)).strftime("%Y-%m-%d"),
-			((today-datetime.timedelta(12*30)).replace(day=1)).strftime("%Y-%m-%d")]
 
-	for i in dates:
-		cursor.execute("INSERT INTO Past12Months VALUES(?, NULL, NULL, NULL)", (i,))
+	currMonthDay1 = datetime.datetime.today().replace(day=1)
+	cursor.execute("INSERT INTO Past12Months VALUES(?, NULL, NULL, NULL)", (currMonthDay1.strftime("%Y-%m-%d"),))
+
+	for i in range(0,12):
+		currMonthDay1 = (currMonthDay1-datetime.timedelta(1)).replace(day=1)
+		cursor.execute("INSERT INTO Past12Months VALUES(?, NULL, NULL, NULL)", (currMonthDay1.strftime("%Y-%m-%d"),))
+
+def createMonthTable():
+	cursor.execute('''DROP TABLE IF EXISTS "Past30Days"''')
+	cursor.execute("""CREATE TABLE Past30Days
+					(
+					day date primary key,
+					base text,
+					target text,
+					rate real
+					);""")
+
+	day = datetime.datetime.today()
+	cursor.execute("INSERT INTO Past30Days VALUES(?, NULL, NULL, NULL)", (day.strftime("%Y-%m-%d"), ))
+
+	for i in range(0, 30):
+		day = day-datetime.timedelta(1)
+		cursor.execute("INSERT INTO Past30Days(day) VALUES(?)", (day.strftime("%Y-%m-%d"), ))
 
 
 #insert desired base and target currencies and xchange rate
-def updateTable(base, target, rate):
+def updateYearTable(base, target, rate):
 	query = """UPDATE Past12Months
 				SET base = (?), target = (?), rate = (?)"""
 	cursor.execute(query, [base, target, rate])
 	return;
 
-def updateTable2(base, target, rate):
+def updateMonthTable(base, target, rate):
+	query = """UPDATE Past30Days
+				SET base = (?), target = (?), rate = (?)"""
+	cursor.execute(query, [base, target, rate])
+	return;
+
+def updateTablev2(base, target, rate):
 	query = """UPDATE Dates
 				SET base = (?), target = (?)"""
 	cursor.execute(query, [base, target])
@@ -88,9 +101,8 @@ def main():
 	target = "CAN"
 	rate = 1
 	createYearTable();
-	updateTable(base, target, rate)
+	updateYearTable(base, target, rate)
 	print(tableToGraph());
-
 
 if __name__ == '__main__':
 	main()
