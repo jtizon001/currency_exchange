@@ -16,7 +16,7 @@ $(document).ready(function () {
       url: "https://jtizon001.github.io/getData/",
       // dataType: "JSON",
       // data: {"base":"btc","target":"usd","amount":"100"},
-      data: dataObject,
+      data: {"d": dataObject},
       error: function(response){
         console.log("error in ajax call");
         alert("error in ajax call");
