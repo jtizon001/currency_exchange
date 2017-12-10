@@ -3,9 +3,8 @@ $(document).ready(function () {
 
 // alert("hello");
 
+
 //use ajax to fetch data from the python file "app.py"
-
-
   $( document.getElementById('button1') ).click(function() {
     alert("you clicked");
 
@@ -23,8 +22,8 @@ $(document).ready(function () {
         alert("error in ajax call");
       },
       success: function(response){
-        console.log("success: " + response);
-        alert("success: " + response);
+        console.log("success: ");
+        alert("success: ");
         // $( document.getElementById('resultDiv') ).html(response);
       }
 
@@ -40,12 +39,24 @@ $(document).ready(function () {
   });
  
 
+  $( document.getElementsByClassName('card-footer') ).click(function() {
+    // alert("you clicked GO");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
+    // document.getElementsByClassName('content-box').innerHTML += 'TEST 2 TEST 2'
 
 
 
-//   $.getJSON('http://example.com/your/webservice?param1=x&param2=y', 
-//     function(data, textStatus, jqXHR) {
-//         alert(data);
-//     }
-// )
+    });
+
+
+
+
+
+
 });
+
+
+
+
+
+
