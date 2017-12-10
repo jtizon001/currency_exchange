@@ -18,9 +18,20 @@
 
     <!-- refernce JS documents-->  
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
       <script type="text/javascript" src="main.js"></script>
 
+
+      <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+
+
   </head>
+
+
+
+
+
+<!--_________________________ white top bar. _________________________--> 
 
   <body>
     <!-- Navigation -->
@@ -32,6 +43,13 @@
       </div>
     </nav>
 
+
+
+
+
+
+<!--_________________________ big grey box _________________________--> 
+
     <!-- Page Content -->
     <div class="container">
 
@@ -42,17 +60,21 @@
 
 
         <form enctype='application/json'>
-          Base Currency: <input type="text" name="base">
+          Base Currency: <input type="text" name="base" id = "basecurr">
           Target Currency: <input type="text" name="target">
           Amount: <input type="text" name="amount">
           <input class="btn btn-primary btn-lg" type="submit" name="submit" id = "button1">
         </form>
 
+      </header>
 
 
 
-<!--         <a href="#" class="btn btn-primary btn-lg">Convert now!</a>
- -->      </header>
+
+
+
+
+<!--_________________________ this is the 4 feature options that have the "GO" buttons _________________________--> 
 
       <!-- Page Features -->
       <div class="row text-center">
@@ -111,23 +133,24 @@
 
       </div>
       <!-- /.row -->
-
-
-
-
-<!-- this is the content box that pops up when useres click "GO"
- -->      
-
-
-
-
-
     </div>
     <!-- /.container -->
+
+
+
+
+
+
+<!--_________________________ this is the content box that pops up when useres click "GO" _________________________--> 
       <div class = "content-box-area">
-<!--         <p>TEST TEST TEST</p>
- -->      
       </div>
+
+
+
+
+
+
+<!--_________________________ footer ___________________________________________________________________________--> 
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -137,9 +160,15 @@
       <!-- /.container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
+
+
+
+
+    <!-- Bootstrap core JavaScript, and jquery UI -->
     <script src="./bootstrap-files/vendor/jquery/jquery.min.js"></script>
     <script src="./bootstrap-files/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./jqueryUI/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
 
   </body>
 
