@@ -9,32 +9,44 @@ $(document).ready(function () {
     alert("you clicked");
 
     var dataObject = $('form').serialize();
+
+    var newDataObject = "{'base':'" + dataObject[5] + dataObject[6] + dataObject[7] + "','target':'" + dataObject[16] + dataObject[17] + dataObject[18] + "','amount':'100'}";
+
     console.log(dataObject);
+    console.log(newDataObject);
 
-    $.ajax({
-      method: "POST",
-      url: "https://jtizon001.github.io/getData/",
-      // dataType: "JSON",
-      // data: {"base":"btc","target":"usd","amount":"100"},
-      data: {"d": dataObject},
-      error: function(response){
-        console.log("error in ajax call");
-        alert("error in ajax call");
-      },
-      success: function(response){
-        console.log("success: ");
-        alert("success: ");
-        // $( document.getElementById('resultDiv') ).html(response);
-      }
+    // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
 
-    }).done(function( ) {
-      
-      console.log("done");
+      $.ajax({
+        method: "POST",
+        url: "https://jtizon001.github.io/getData/",
+        // dataType: "JSON",
+        // data: {"base":"btc","target":"usd","amount":"100"},
+        // data: {"d": dataObject},
+        data: newDataObject,
+        error: function(response){
+          console.log("error in ajax call");
+          alert("error in ajax call");
+        },
+        success: function(response){
+          console.log("success: ");
+          alert("success: ");
+          // $( document.getElementById('resultDiv') ).html(response);
+        }
 
-    });
+      }).done(function( ) {
+        
+        console.log("done");
 
-    alert("2");
+      });
 
+      alert("2");
+
+    // }
+
+    // else{
+    //   alert("please enter the 3-character symbol of your currency.");
+    // }
  
   });
 
