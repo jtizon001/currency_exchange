@@ -86,7 +86,7 @@ $(document).ready(function () {
 //jquery UI thing that might be useful here
     // var dateVar =  $( "#date" ).datepicker();
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<form enctype='application/json'><input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'>    <input type='text' value = 'Currency' name='historyCurr' id = 'historyCurr'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<form enctype='application/json'><input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'dateID'>    <input type='text' placeholder = 'Currency' name='historyCurr' id = 'historyCurr'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script></div>");
 
   });
 
