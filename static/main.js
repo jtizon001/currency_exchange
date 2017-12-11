@@ -64,7 +64,9 @@ $(document).ready(function () {
 
 
 
-        document.getElementsByClassName('result')[0].innerHTML = JSON.stringify(response);
+        stringResponse = JSON.stringify(response);
+        document.getElementsByClassName('result')[0].innerHTML = stringResponse.substring(8, stringResponse.length-1);
+          
         // document.getElementsByClassName('container')[0].appendChild(response);
 
 
