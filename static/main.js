@@ -1,23 +1,13 @@
 $(document).ready(function () {
 
 
-  $( document.getElementById("baseCurr") ).click(function() {
-    $(this).select(); 
-  });
-
-  $( document.getElementById("targetCurr") ).click(function() {
-    $(this).select(); 
-  }); 
-
-  $( document.getElementById("amount") ).click(function() {
-    $(this).select(); 
-  });
-
-
 // _________________________ ajax call for conversion _______________________________________________________
 
 //use ajax to fetch data from the python file "app.py"
-  $( document.getElementById('button1') ).click(function() {
+  $( document.getElementById('button1') ).click(function(e) {
+    e.preventDefault();
+    // e.stopPropagation();
+
     alert("you clicked");
 
     var array = $('form').serializeArray();
