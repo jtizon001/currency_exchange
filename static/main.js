@@ -46,7 +46,7 @@ $(document).ready(function () {
           // var stringResponse = JSON.parse(response);
         // $( document.getElementsByClassName('result') ).append(response);
 
-        document.getElementsByClassName('result')[0].innerHTML = response;
+        document.getElementsByClassName('result')[0].innerHTML = JSON.stringify(response);
         // document.getElementsByClassName('container')[0].appendChild(response);
 
 
