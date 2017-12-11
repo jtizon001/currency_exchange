@@ -26,6 +26,8 @@ $(document).ready(function () {
       jsonstring[this.name] = this.value || '';
     });
     console.log(jsonstring);
+    var dataObject = JSON.stringify(jsonstring);
+    console.log(dataObject);
 
 
 //just for testing:
@@ -41,7 +43,7 @@ $(document).ready(function () {
         // dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
-        data: jsonstring,
+        data: dataObject,
         error: function(response){
           console.log("error in ajax call");
           alert("error in ajax call");
