@@ -20,23 +20,13 @@ $(document).ready(function () {
   $( document.getElementById('button1') ).click(function() {
     alert("you clicked");
 
-    var dataObject = $('form').serialize();
+    var array = $('form').serializeArray();
+    var json = {}
+    jQuery.each(array, function() {
+      json[this.name] = this.value || '';
+    });
+    console.log(json);
 
-
-
-    // indexOfStartOfNumber = dataObject.length - 18;
-
-    // var target = dataObject.substring(dataObject[dataObject.length - 4], dataObject[dataObject.length - 1]);
-    // console.log(target);
-
-    // number = dataObject.substring(dataObject[indexOfStartOfNumber], dataObject[dataObject.length - 1]);
-
-    // console.log(number);
-
-    // var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + target + '","amount":"100"}';
-
-    console.log(dataObject);
-    // console.log(newDataObject);
 
 //just for testing:
     var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
