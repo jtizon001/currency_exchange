@@ -21,15 +21,15 @@ $(document).ready(function () {
     alert("you clicked");
 
     var array = $('form').serializeArray();
-    var json = {}
+    var jsonstring = {}
     jQuery.each(array, function() {
-      json[this.name] = this.value || '';
+      jsonstring[this.name] = this.value || '';
     });
-    console.log(json);
+    console.log(jsonstring);
 
 
 //just for testing:
-    var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
+    //var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
 
     // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
         // dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
-        data: hardCodedObject,
+        data: jsonstring,
         error: function(response){
           console.log("error in ajax call");
           alert("error in ajax call");
