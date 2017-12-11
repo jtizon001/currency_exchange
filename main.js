@@ -44,8 +44,9 @@ $(document).ready(function () {
       $.ajax({
         method: "POST",
         // url: "http://192.241.142.13:80/getData/",
-        url: "getData",
-        dataType: "JSON",
+        url: "http://localhost:5000/getData",
+        contentType: "application/json",
+        // dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
         data: hardCodedObject,
