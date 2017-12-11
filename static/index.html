@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Your Currensy Calc</title>
+
+    <!-- reference favicon-->  
+    <link href="https://i.imgur.com/iX5EHa1.png" rel="icon" type="image/x-icon" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap-files/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jqueryUI CSS -->
+    <link href="static/jqueryUI/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet">
+
+    <!-- Put Graph CSS reference here when appropriate -->
+    <script src="static/jquery-3.2.1.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="static/c3.min.js"></script>
+    <link href="static/c3.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/bootstrap-files/css/heroic-features.css" rel="stylesheet">
+
+    <!-- refernce JS documents-->  
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <script type="text/javascript" src="static/main.js"></script>
+
+
+      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+
+
+  </head>
+
+
+
+
+
+<!--_________________________ white top bar. _________________________--> 
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
+      <div class="headerContainer">
+        <a class="navbar-brand" href="#">        
+          <img src="https://i.imgur.com/KhwMigY.png" alt="">
+        </a>
+      </div>
+    </nav>
+
+
+
+<!-- <div class = 'content-box'>>
+  <script>
+    var dateVar =  $( '#date' ).datepicker();
+  </script>
+
+  Enter a currency and date:
+
+  <form enctype='application/json'>
+    <input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'>
+    <input type='text' value = 'Currency' name='historyCurr' id = 'historyCurr'>
+
+    <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'>
+  </form>
+
+    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>
+    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script>
+
+
+
+</div> -->
+
+
+<!--_________________________ big grey box _________________________--> 
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Jumbotron Header -->
+      <header class="jumbotron my-4">
+        <h1 class="display-3">Need your currency converted?</h1>
+        <p class="lead">Take care of the details here, leaving the fun parts of traveling to you and yours.</p>
+
+
+        <form enctype='application/json'>
+          <input type="text" placeholder = "From" name="base" id = "baseCurr">
+          <input type="text" placeholder = "Amount" name="amount" id = "amount">
+          <br><br>
+          <input type="text" placeholder = "To" name="target" id = "targetCurr">
+          <input class="btn btn-primary btn-lg" type="submit" name="submit" id = "button1">
+        </form>
+
+        <div class="result">result:
+        </div>
+
+      </header>
+
+
+
+
+
+
+
+<!--_________________________ this is the 4 feature options that have the "GO" buttons _________________________--> 
+
+      <!-- Page Features -->
+      <div class="row text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.imgur.com/ggM6z6Z.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Historical Data</h4>
+              <p class="card-text">Pick a specific date in history and compare prices</p>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" id="go-1">Go!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.imgur.com/7LVJ81l.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Graphs</h4>
+              <p class="card-text">Chart currencies against eachother</p>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" id="go-2">Go!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.imgur.com/Xp2oEpO.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Maps</h4>
+              <p class="card-text">Find the closest currensy conversion point to you</p>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" id="go-3">Go!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://i.imgur.com/URfjuRg.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Travel News</h4>
+              <p class="card-text">Check out updates from the US Dept of state</p>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" id="go-4">Go!</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+
+
+
+
+
+<!--_________________________ this is the content box that pops up when useres click "GO" _________________________--> 
+      <div class = "content-box-area">
+      </div>
+
+
+
+
+
+
+<!--_________________________ footer ___________________________________________________________________________--> 
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white"><a href="./index.html"> <img src="https://i.imgur.com/KhwMigY.png" alt="">Back to top</a></p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+
+
+
+
+    <!-- Bootstrap core JavaScript, and jquery UI -->
+    <script src="static/bootstrap-files/vendor/jquery/jquery.min.js"></script>
+    <script src="static/bootstrap-files/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/jqueryUI/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
+
+  </body>
+
+</html>
