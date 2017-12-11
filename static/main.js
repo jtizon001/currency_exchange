@@ -25,6 +25,25 @@ $(document).ready(function () {
 
     // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
 
+  $( document.getElementById('button1') ).click(function(e) {
+    e.preventDefault();
+    // e.stopPropagation();
+
+    var array = $('form').serializeArray();
+    var jsonstring = {}
+    jQuery.each(array, function() {
+      jsonstring[this.name] = this.value || '';
+    });
+    console.log(jsonstring);
+    var dataObject = JSON.stringify(jsonstring);
+    console.log(dataObject);
+
+
+//just for testing:
+    //var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
+
+    // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
+
       $.ajax({
         method: "POST",
         // url: "http://192.241.142.13:80/getData/",
@@ -36,15 +55,14 @@ $(document).ready(function () {
         data: dataObject,
         error: function(response){
           console.log("error in ajax call");
-          alert("error in ajax call");
+          // alert("error in ajax call");
         },
         success: function(response){
           console.log("success: ");
-          alert("success: ");
+          // alert("success: ");
           console.log(response);
 
-          // var stringResponse = JSON.parse(response);
-        // $( document.getElementsByClassName('result') ).append(response);
+
 
         document.getElementsByClassName('result')[0].innerHTML = JSON.stringify(response);
         // document.getElementsByClassName('container')[0].appendChild(response);
