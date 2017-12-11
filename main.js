@@ -22,19 +22,19 @@ $(document).ready(function () {
 
     var dataObject = $('form').serialize();
 
-    indexOfStartOfNumber = dataObject.length - 18;
+//     indexOfStartOfNumber = dataObject.length - 18;
 
-    var target = dataObject.substring(dataObject[dataObject.length - 4], dataObject[dataObject.length - 1]);
-    console.log(target);
+//     var target = dataObject.substring(dataObject[dataObject.length - 4], dataObject[dataObject.length - 1]);
+//     console.log(target);
 
-    number = dataObject.substring(dataObject[indexOfStartOfNumber], dataObject[dataObject.length - 1]);
+//     number = dataObject.substring(dataObject[indexOfStartOfNumber], dataObject[dataObject.length - 1]);
 
-    console.log(number);
+//     console.log(number);
 
-    var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + target + '","amount":"100"}';
+//     var newDataObject = '{"base":"' + dataObject[5] + dataObject[6] + dataObject[7] + '","target":"' + target + '","amount":"100"}';
 
-    console.log(dataObject);
-    console.log(newDataObject);
+//     console.log(dataObject);
+//     console.log(newDataObject);
 
 //just for testing:
     var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
