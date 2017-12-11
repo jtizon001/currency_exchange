@@ -53,10 +53,11 @@ $(document).ready(function () {
           alert("success: ");
           console.log(response);
 
-          var stringResponse = JSON.parse(response);
+          // var stringResponse = JSON.parse(response);
         // $( document.getElementsByClassName('result') ).append(response);
 
-        document.getElementsByClassName('result')[0].innerHTML = stringResponse;
+        document.getElementsByClassName('result')[0].innerHTML = response;
+        // document.getElementsByClassName('container')[0].appendChild(response);
 
 
           // $( document.getElementById('resultDiv') ).html(response);
