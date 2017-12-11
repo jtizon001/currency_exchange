@@ -110,7 +110,7 @@ $(document).ready(function () {
 
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><p>content will go here :)</p></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><iframe width='400' height='400' style='border:none;' src='http://output10.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
 
   });
 
