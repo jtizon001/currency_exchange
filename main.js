@@ -36,6 +36,9 @@ $(document).ready(function () {
     console.log(dataObject);
     console.log(newDataObject);
 
+//just for testing:
+    var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
+
     // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
 
       $.ajax({
@@ -44,7 +47,7 @@ $(document).ready(function () {
         dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
-        data: newDataObject,
+        data: hardCodedObject,
         error: function(response){
           console.log("error in ajax call");
           alert("error in ajax call");
@@ -83,7 +86,7 @@ $(document).ready(function () {
 //jquery UI thing that might be useful here
     // var dateVar =  $( "#date" ).datepicker();
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a date:<form enctype='application/json'><input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<form enctype='application/json'><input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'>    <input type='text' value = 'Currency' name='historyCurr' id = 'historyCurr'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script></div>");
 
   });
 
