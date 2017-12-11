@@ -43,7 +43,7 @@ $(document).ready(function () {
 
       $.ajax({
         method: "POST",
-        url: "192.241.142.13/getData/",
+        url: "http://192.241.142.13/getData/",
         dataType: "JSON",
         // data: {"base":"btc","target":"usd","amount":"100"},
         // data: {"d": dataObject},
