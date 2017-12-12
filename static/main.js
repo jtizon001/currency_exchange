@@ -111,6 +111,7 @@ $(document).ready(function () {
         data: historyDataObject,
         error: function(response){
           console.log("error in ajax call");
+          alert("Your inputs or the date may be invalid");
         },
         success: function(response){
           console.log("success: ");
