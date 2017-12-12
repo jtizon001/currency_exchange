@@ -1,5 +1,6 @@
 from forex_python.converter import CurrencyRates
 from forex_python.bitcoin import BtcConverter
+import datetime
 
 c=CurrencyRates()
 b=BtcConverter()
@@ -47,7 +48,14 @@ def convertBit(x,y,z):
 		req=b.convert_to_btc(z,x)
 		return req
 
-
+def getHistoric(x,y,z):
+	#parse string
+	z=z.split('/')
+	z1=float(z[0])
+	z2=float(z[1])
+	z3=float(z[2])
+	histDate=datatime.datatime(z3,z2,z1,3,0,0,0)
+	return float(get_rate('x','y',histDate))
 
 
 
