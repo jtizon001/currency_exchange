@@ -28,8 +28,9 @@ body {
 }*/
 
 a{
-  color: lightgreen !important;
-}
+  color: white !important;
+/*  color: lightgreen !important;
+*/}
 
 footer img{
     display: block;
@@ -67,7 +68,26 @@ footer img{
 }
 
 .ui-autocomplete {
-    background: white;
+  background: white;
 }
 
+.ui-datepicker{
+  background: lightgreen;
+  color: black;
 
+}
+
+.ui-datepicker a{
+  color: black!important;
+}
+
+.ui-datepicker-header{
+  background: white;
+}
+
+.ui-datepicker-calendar{
+  background: white;
+  color: black !important;
+
+
+}
