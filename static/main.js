@@ -74,13 +74,13 @@ $(document).ready(function () {
 
 
 
-// _________________________ content box stuff _______________________________________________________
+// _________________________ content box: History _______________________________________________________
 
   $( document.getElementById('go-1') ).click(function() {
     
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form><div><historyResult</div></div>");
 
 
     $( document.getElementById('historyButton') ).click(function(e) {
@@ -106,25 +106,43 @@ $(document).ready(function () {
 
 // _________________________ uncomment this once Jonny's app.py is ready for it _______________________________________________________
 
-      // $.ajax({
-      //   method: "POST",
-      //   // url: "http://192.241.142.13:80/getData/",
-      //   url: "http://localhost:5000/getHistory",
-      //   contentType: "application/json",
-      //   data: historyDataObject2,
-      //   error: function(response){
-      //     console.log("error in ajax call");
-      //   },
-      //   success: function(response){
-      //     console.log("success: ");
-      //     console.log(response);
-      //   }
-      // });
+      $.ajax({
+        method: "POST",
+        // url: "http://192.241.142.13:80/getData/",
+        url: "http://localhost:5000/getHistory",
+        contentType: "application/json",
+        data: historyDataObject2,
+        error: function(response){
+          console.log("error in ajax call");
+        },
+        success: function(response){
+          console.log("success: ");
+          console.log(response);
 
-    });
+        
+        stringHistoryResponse = JSON.stringify(response);
+        stringHistorySymbol = JSON.stringify(historyArray[1]);
+        stringHistorySymbol2 = stringHistorySymbol.substring(stringHistorySymbol.length-5, stringHistorySymbol.length-2).toUpperCase();
+
+        document.getElementsByClassName('historyResult')[0].innerHTML = "<BR>= " + stringHistoryResponse.substring(8, stringHistoryResponse.length-1) + " " + stringHistorySymbol2;
+        }
+
+      }).done(function( ) {
+        
+        console.log("done");
+
+      });
+
+
+
+     });
 
 
   });
+
+  
+// _________________________ content box: Graphs _______________________________________________________
+
 
   $( document.getElementById('go-2') ).click(function() {
 
@@ -199,6 +217,14 @@ $(document).ready(function () {
       source: availableTags
     });
   } );
+  
+  
+  
+  
+  
+  
+  // _________________________ Charts stuff _______________________________________________________
+
   
   //chart
 // 2 arrays with dummy currency rate info of certain time frame
