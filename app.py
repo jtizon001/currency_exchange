@@ -50,7 +50,7 @@ def getGraphData():
     graphRange=graphArgs['range']
     rangeDict={}
 
-    if(graphRange='past12Months'):
+    if(graphRange=='past12Months'):
       currMonthDay1=datetime.datetime.today().replace(day=1)
       for i in range(0,12):
         currMonthDay1=(currMonthDay1-datetime.timedelta(1)).replace(day=1)
