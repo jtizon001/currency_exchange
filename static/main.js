@@ -150,7 +150,7 @@ $(document).ready(function () {
 
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
     
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><Enter a base currency and up to 2 target currencies to compare:<form enctype='application/json'> <input type='text' placeholder ='Base' name='baseCurr' id ='baseCurr'> <input type='text' placeholder ='Target' name='targetCurr' id='targetCurr t1'> <input type='text' placeholder='Target (optional)' name='targetCurr' id='targetCurr t2'><select><option value='' disabled selected>Past...</option><option value='past30Days'>Past 30 Days</option><option value='past12Months'>Past 12 Months</option><option value='past5Years'>Past 5 Years</option></select> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'graphButton'></form> </div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'>Enter a base currency and up to 2 target currencies to compare:<br><form enctype='application/json'> <input type='text' placeholder ='Base' name='baseCurr' id ='baseCurr'> <input type='text' placeholder ='Target' name='targetCurr' id='targetCurr t1'> <input type='text' placeholder='Target (optional)' name='targetCurr' id='targetCurr t2'><select><option value='' disabled selected>Past...</option><option value='past30Days'>Past 30 Days</option><option value='past12Months'>Past 12 Months</option><option value='past5Years'>Past 5 Years</option></select> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'graphButton'></form> </div>");
 
     $( document.getElementsByClassName('content-box-area') ).append( "<div id = 'chart'></div>");
   });
