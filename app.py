@@ -25,6 +25,19 @@ def getData():
     dicto={"rate":x}
     response=jsonify(dicto)
     return response
+  
+  
+@app.route('/getHistory', methods=['GET','POST'])
+def getHistory():
+  if request.headers['Content-Type']=='application/json':
+    historicArg=request.get_json()
+    historyCurrBaseStr=historicArg['historyCurrBase'].upper()
+    historyCurrTargetStr=historicArg['historyCurrTarget'].upper()
+    historyDate=historicArg['date']
+
+    x=foreXchange.getHistory(historyCurrBaseStr,historyCurrTargetStr,date)
+    dicto={'rate':x}
+    response=jsonify(dicto)
 
 # @app.route('/',methods=['GET','POST']) 
 # def index():
