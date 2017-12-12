@@ -10,13 +10,12 @@ cursor = conn.cursor()
 
 #create table of only dates, null values for rest
 def createPast5YearsTable():
-	cursor.execute('''DROP TABLE IF EXISTS "Dates";''')
-	cursor.execute("""CREATE TABLE Dates
+	cursor.execute("""CREATE TABLE IF NOT EXISTS Past5Years
 					(
-					day date primary key,
-					base text,
-					target text,
-					rate real
+					day DATE PRIMARY KEY,
+					base TEXT,
+					target TEXT,
+					rate REAL,
 					);""")
 
 	today = (datetime.datetime.today().replace(day=1)).strftime("%Y-%m-%d")
@@ -25,17 +24,16 @@ def createPast5YearsTable():
 		("2016-01-01"), ("2016-05-01"), ("2016-09-01"), ("2017-01-01"), ("2017-05-01"), ("2017-09-01"), (today)]
 
 	for i in dates:
-		cursor.execute("INSERT INTO Dates VALUES(?, NULL, NULL, NULL)", (i,))
+		cursor.execute("INSERT INTO Past5Years VALUES(?, NULL, NULL, NULL)", (i,))
 	return;
 
-def createYearTable():
-	cursor.execute('''DROP TABLE IF EXISTS "Past12Months"''')
-	cursor.execute("""CREATE TABLE Past12Months
+def create12MonthsTable():
+	cursor.execute("""CREATE TABLE IF NOT EXISTS Past12Months
 					(
-					day date primary key,
-					base text,
-					target text,
-					rate real
+					day DATE PRIMARY KEY,
+					base TEXT,
+					target TEXT,
+					rate REAL
 					);""")
 
 
@@ -46,14 +44,13 @@ def createYearTable():
 		currMonthDay1 = (currMonthDay1-datetime.timedelta(1)).replace(day=1)
 		cursor.execute("INSERT INTO Past12Months VALUES(?, NULL, NULL, NULL)", (currMonthDay1.strftime("%Y-%m-%d"),))
 
-def createMonthTable():
-	cursor.execute('''DROP TABLE IF EXISTS "Past30Days"''')
-	cursor.execute("""CREATE TABLE Past30Days
+def create30DaysTable():
+	cursor.execute("""CREATE TABLE IF NOT EXISTS Past30Days
 					(
-					day date primary key,
-					base text,
-					target text,
-					rate real
+					day DATE PRIMARY KEY,
+					base TEXT,
+					target TEXT,
+					rate REAL
 					);""")
 
 	day = datetime.datetime.today()
@@ -65,14 +62,20 @@ def createMonthTable():
 
 
 #insert desired base and target currencies and xchange rate
-def updateYearTable(base, target, rate):
+def update12MonthsTable(base, target, rate):
 	query = """UPDATE Past12Months
 				SET base = (?), target = (?), rate = (?)"""
 	cursor.execute(query, [base, target, rate])
 	return;
 
-def updateMonthTable(base, target, rate):
+def update30DaysTable(base, target, rate):
 	query = """UPDATE Past30Days
+				SET base = (?), target = (?), rate = (?)"""
+	cursor.execute(query, [base, target, rate])
+	return;
+
+def update5YearsTable(base, target, rate):
+	query = """UPDATE Past5Years
 				SET base = (?), target = (?), rate = (?)"""
 	cursor.execute(query, [base, target, rate])
 	return;
@@ -81,13 +84,15 @@ def updateTablev2(base, target, rate):
 	query = """UPDATE Dates
 				SET base = (?), target = (?)"""
 	cursor.execute(query, [base, target])
+	return;
 
 
 #returns array of dates for x-axis, and array of xchange rates to be plotted
 def tableToGraph():
 	query = """SELECT day, rate FROM Past12Months
+				WHERE base = (?), target = (?)
 				GROUP BY day
-				ORDER BY day asc"""
+				ORDER BY day ASC"""
 	values = cursor.execute(query).fetchall()
 	dates = []
 	rates = []
@@ -97,12 +102,12 @@ def tableToGraph():
 	return dates, rates
 
 def main():
-	base = "USD"
-	target = "CAN"
-	rate = 1
-	createYearTable();
-	updateYearTable(base, target, rate)
-	print(tableToGraph());
+	#base = "USD"
+	#target = "CAN"
+	#rate = 1
+	create12MonthsTable();
+	update12MonthsTable(base, target, rate)
+	print(tableToGraph(base, target));
 
 if __name__ == '__main__':
 	main()
