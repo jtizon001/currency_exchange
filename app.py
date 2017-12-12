@@ -38,6 +38,7 @@ def getHistory():
     x=foreXchange.getHistory(historyCurrBaseStr,historyCurrTargetStr,date)
     dicto={'rate':x}
     response=jsonify(dicto)
+    return response
 
 # @app.route('/',methods=['GET','POST']) 
 # def index():
