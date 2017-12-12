@@ -46,8 +46,8 @@ def getHistory():
 def getGraphData():
   if request.headers['Content-Type']=='application/json':
     graphArgs=request.get_json()
-    graphBase=graphArgs['baseCurr']
-    graphTarget=graphArgs['targetCurr']
+    graphBase=graphArgs['baseCurr'].upper()
+    graphTarget=graphArgs['targetCurr'].upper()
     graphRange=graphArgs['range']
     rangeDict={}
 
