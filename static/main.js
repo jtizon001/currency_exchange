@@ -74,19 +74,20 @@ $(document).ready(function () {
 
 
 
+
+
 // _________________________ content box: History _______________________________________________________
 
   $( document.getElementById('go-1') ).click(function() {
     
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker({changeMonth: true, changeYear: true});</script>Enter a currency and date:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form><div><historyResult</div></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker({changeMonth: true, changeYear: true});</script>Enter 2 currencies and a date, and find out the old exchange rate:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form><div id = 'historyResult'></div></div>");
 
 
     $( document.getElementById('historyButton') ).click(function(e) {
       // e.stopPropagation();
       e.preventDefault();
-      alert("you clicked");
       var historyArray = $('form').serializeArray();
       console.log(historyArray);
 
@@ -124,7 +125,8 @@ $(document).ready(function () {
         stringHistorySymbol = JSON.stringify(historyArray[1]);
         stringHistorySymbol2 = stringHistorySymbol.substring(stringHistorySymbol.length-5, stringHistorySymbol.length-2).toUpperCase();
 
-        document.getElementsByClassName('historyResult')[0].innerHTML = "<BR>= " + stringHistoryResponse.substring(8, stringHistoryResponse.length-1) + " " + stringHistorySymbol2;
+        document.getElementById('historyResult').innerHTML = "<BR>On this date in history, the conversion rate was " + stringHistoryResponse.substring(8, stringHistoryResponse.length-1);
+        // + " " + stringHistorySymbol2;
         }
 
       }).done(function( ) {
