@@ -45,7 +45,10 @@ $(document).ready(function () {
         // $( document.getElementsByClassName('result') ).append(response);
 
         stringResponse = JSON.stringify(response);
-        document.getElementsByClassName('result')[0].innerHTML = stringResponse.substring(8, stringResponse.length-1);
+        stringSymbol = JSON.stringify(array[1]);
+        stringSymbol2 = stringSymbol.substring(stringSymbol.length-5, stringSymbol.length-2);
+
+        document.getElementsByClassName('result')[0].innerHTML = "<BR>= " + stringResponse.substring(8, stringResponse.length-1) + " " + stringSymbol2;
         
         // document.getElementsByClassName('container')[0].appendChild(response);
 
