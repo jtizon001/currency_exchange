@@ -51,11 +51,12 @@ def convertBit(x,y,z):
 def getHistoric(x,y,z):
 	#parse string
 	z=z.split('/')
-	z1=float(z[0])
-	z2=float(z[1])
-	z3=float(z[2])
+	z1=int(z[0])
+	z2=int(z[1])
+	z3=int(z[2])
 	histDate=datetime.datetime(z3,z2,z1,3,0,0,0)
-	return float(get_rate('x','y',histDate))
+	req= float(c.get_rate('x','y',histDate))
+	return req
 
 
 
