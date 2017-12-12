@@ -73,16 +73,56 @@ $(document).ready(function () {
 
 
 
+
 // _________________________ content box stuff _______________________________________________________
 
   $( document.getElementById('go-1') ).click(function() {
     
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-//jquery UI thing that might be useful here
-    // var dateVar =  $( "#date" ).datepicker();
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form></div>");
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<form enctype='application/json'><input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'dateID'>    <input type='text' placeholder = 'Currency' name='historyCurr' id = 'historyCurr'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script></div>");
+
+    $( document.getElementById('historyButton') ).click(function(e) {
+      // e.stopPropagation();
+      e.preventDefault();
+      alert("you clicked");
+      var historyArray = $('form').serializeArray();
+      console.log(historyArray);
+
+      var historyJsonstring = {}
+      jQuery.each(historyArray, function() {
+        historyJsonstring[this.name] = this.value || '';
+      });
+      console.log(historyJsonstring);
+      var historyDataObject = JSON.stringify(historyJsonstring);
+      
+      var historyDataObject2 = "{" + historyDataObject.substring(36, historyDataObject.length);
+
+      console.log(historyDataObject2);
+
+
+
+
+// _________________________ uncomment this once Jonny's app.py is ready for it _______________________________________________________
+
+      // $.ajax({
+      //   method: "POST",
+      //   // url: "http://192.241.142.13:80/getData/",
+      //   url: "http://localhost:5000/getHistory",
+      //   contentType: "application/json",
+      //   data: historyDataObject2,
+      //   error: function(response){
+      //     console.log("error in ajax call");
+      //   },
+      //   success: function(response){
+      //     console.log("success: ");
+      //     console.log(response);
+      //   }
+      // });
+
+    });
+
 
   });
 
