@@ -174,7 +174,7 @@ $(document).ready(function () {
 
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'id = 'content-box-map'>&nbsp;&nbsp;&nbsp;&nbsp;<iframe width='100%' height='400' style='border:none;'' src='http://output15.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'id = 'content-box-map'><iframe width='100%' height='400' style='border:none' src='http://output46.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
 
   });
 
