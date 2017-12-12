@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 
 
-// _________________________ uncomment this once Jonny's app.py is ready for it _______________________________________________________
+// _________________________ AJAX call for history box _______________________________________________________
 
       $.ajax({
         method: "POST",
@@ -155,20 +155,26 @@ $(document).ready(function () {
     $( document.getElementsByClassName('content-box-area') ).append( "<div id = 'chart'></div>");
   });
 
+// _________________________ content box: Maps _______________________________________________________
+
+
   $( document.getElementById('go-3') ).click(function() {
 
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><iframe src='https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d51705.71556068031!2d-79.07397514277635!3d35.90763429846561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scurrency+exchange!5e0!3m2!1sen!2sus!4v1512932684975' width='800' height='600' align='middle' frameborder='0' style='border:0' allowfullscreen> </iframe></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box' id = 'content-box-map'><iframe src='https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d206827.95187267763!2d-79.109654!3d35.905687!3m2!1i1024!2i768!4f13.1!2m1!1sinternational+currency+exchange+close+to+me!5e0!3m2!1sen!2sus!4v1513112364416' width='100%'' height='400' frameborder='0' style='border:0' allowfullscreen></iframe></div>");
 
   });
+
+// _________________________ content box: Travel News _______________________________________________________
+
 
   $( document.getElementById('go-4') ).click(function() {
 
     document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'>&nbsp;&nbsp;&nbsp;&nbsp;<iframe width='400' height='400' style='border:none;'' src='http://output15.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'id = 'content-box-map'>&nbsp;&nbsp;&nbsp;&nbsp;<iframe width='100%' height='400' style='border:none;'' src='http://output15.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
 
   });
 
