@@ -39,6 +39,29 @@ def getHistory():
     dicto={'rate':x}
     response=jsonify(dicto)
     return response
+  
+  
+@app.route('/getGraphData', methods=['GET', 'POST'])
+def getGraphData():
+  if request.headers['Content-Type']=='application/json':
+    graphArgs=request.get_json()
+    graphBase=graphArgs['baseCurr']
+    graphTarget=graphArgs['targetCurr']
+    graphRange=graphArgs['range']
+    rangeDict={}
+
+    if(graphRange='past12Months'):
+      currMonthDay1=datetime.datetime.today().replace(day=1)
+      for i in range(0,12):
+        currMonthDay1=(currMonthDay1-datetime.timedelta(1)).replace(day=1)
+        datestr=currMonthDay1.strftime("%m/%d/%Y")
+        currentDict={currMonthDay1:[graphBase,graphTarget,datestr]}
+        rangeDict.update(currentDict)
+
+
+    dicto={'rate':rangeDict}
+    response=jsonify(dicto)
+    return response
 
 # @app.route('/',methods=['GET','POST']) 
 # def index():
