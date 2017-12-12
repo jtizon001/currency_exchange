@@ -33,10 +33,18 @@ a{
 */}
 
 footer img{
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
+
 /*    width: 40%;
 */  }
+footer img:hover{
+  -webkit-filter: hue-rotate(250deg);
+}
+
+.headerContainer img:hover{
+  -webkit-filter: hue-rotate(250deg);
+}
 
 .headerContainer{
   margin-left: 0;
@@ -74,7 +82,6 @@ footer img{
 .ui-datepicker{
   background: lightgreen;
   color: black;
-
 }
 
 .ui-datepicker a{
@@ -88,6 +95,12 @@ footer img{
 .ui-datepicker-calendar{
   background: white;
   color: black !important;
-
-
 }
+
+#content-box-map{
+  border: 0px;
+/*  position: relative;
+/*  font-size: 24px;
+/*  right: 25%;
+/*}
+
