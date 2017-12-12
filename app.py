@@ -35,7 +35,7 @@ def getHistory():
     historyCurrTargetStr=historicArg['historyCurrTarget'].upper()
     historyDate=historicArg['date']
 
-    x=foreXchange.getHistory(historyCurrBaseStr,historyCurrTargetStr,date)
+    x=foreXchange.getHistoric(historyCurrBaseStr,historyCurrTargetStr,historyDate)
     dicto={'rate':x}
     response=jsonify(dicto)
     return response
