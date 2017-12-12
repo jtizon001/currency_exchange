@@ -56,7 +56,8 @@ def getGraphData():
       for i in range(0,12):
         currMonthDay1=(currMonthDay1-datetime.timedelta(1)).replace(day=1)
         datestr=currMonthDay1.strftime("%m/%d/%Y")
-        currentDict={datestr:[graphBase,graphTarget,datestr]}
+        rate=foreXchange.getHistoric(graphBase,graphTarget,datestr)
+        currentDict={currMonthDay1:[graphBase,graphTarget,rate]}
         rangeDict.update(currentDict)
 
 
