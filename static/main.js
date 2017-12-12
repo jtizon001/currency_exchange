@@ -8,7 +8,6 @@ $(document).ready(function () {
     e.preventDefault();
     // e.stopPropagation();
 
-    alert("you clicked");
 
     var array = $('form').serializeArray();
     var jsonstring = {}
@@ -36,11 +35,9 @@ $(document).ready(function () {
         data: dataObject,
         error: function(response){
           console.log("error in ajax call");
-          alert("error in ajax call");
         },
         success: function(response){
           console.log("success: ");
-          alert("success: ");
           console.log(response);
 
 
@@ -61,8 +58,6 @@ $(document).ready(function () {
         console.log("done");
 
       });
-
-      alert("2");
 
     // }
 
@@ -205,12 +200,3 @@ $(document).ready(function () {
 
     });
 });
-
-
-
-
-
-
-
-
-
