@@ -97,7 +97,7 @@ $(document).ready(function () {
       console.log(historyJsonstring);
       var historyDataObject = JSON.stringify(historyJsonstring);
       
-      var historyDataObject2 = "{" + historyDataObject.substring(36, historyDataObject.length);
+      var historyDataObject2 = "{" + historyDataObject.substring(35, historyDataObject.length);
 
       console.log(historyDataObject2);
 
