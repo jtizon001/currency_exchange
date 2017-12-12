@@ -55,7 +55,12 @@ def getHistoric(x,y,z):
 	z2=int(z[1])
 	z3=int(z[2])
 	histDate=datetime.datetime(z3,z2,z1,3,0,0,0)
-	req= float(c.get_rate(x,y,histDate))
+	if x=='BTC':
+		req=b.convert_btc_to_cur_on(1,y,histDate)
+	elif y=='BTC':
+		req=b.convert_to_btc_on(1,x,histDate)
+	else:
+		req= float(c.get_rate(x,y,histDate))
 	return req
 
 
