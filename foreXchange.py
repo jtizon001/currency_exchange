@@ -55,7 +55,7 @@ def getHistoric(x,y,z):
 	z2=int(z[1])
 	z3=int(z[2])
 	histDate=datetime.datetime(z3,z2,z1,3,0,0,0)
-	req= float(c.get_rate('x','y',histDate))
+	req= float(c.get_rate(float(x),float(y),histDate))
 	return req
 
 
