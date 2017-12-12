@@ -54,7 +54,7 @@ def getHistoric(x,y,z):
 	z1=int(z[0])
 	z2=int(z[1])
 	z3=int(z[2])
-	histDate=datetime.datetime(z3,z2,z1,3,0,0,0)
+	histDate=datetime.datetime(z3,z1,z2,3,0,0,0)
 	if x=='BTC':
 		req=b.convert_btc_to_cur_on(1,y,histDate)
 	elif y=='BTC':
