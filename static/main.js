@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         stringResponse = JSON.stringify(response);
         stringSymbol = JSON.stringify(array[1]);
-        stringSymbol2 = stringSymbol.substring(stringSymbol.length-5, stringSymbol.length-2);
+        stringSymbol2 = stringSymbol.substring(stringSymbol.length-5, stringSymbol.length-2).toUpperCase();
 
         document.getElementsByClassName('result')[0].innerHTML = "<BR>= " + stringResponse.substring(8, stringResponse.length-1) + " " + stringSymbol2;
         
