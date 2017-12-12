@@ -1,210 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
+$(document).ready(function () {
 
-  <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+// _________________________ ajax call for conversion _______________________________________________________
 
-    <title>Your Currensy Calc</title>
+//use ajax to fetch data from the python file "app.py"
+  $( document.getElementById('button1') ).click(function(e) {
+    e.preventDefault();
+    // e.stopPropagation();
 
-    <!-- reference favicon-->  
-    <link href="https://i.imgur.com/iX5EHa1.png" rel="icon" type="image/x-icon" />
 
-    <!-- Bootstrap core CSS -->
-    <link href="static/bootstrap-files/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    var array = $('form').serializeArray();
+    var jsonstring = {}
+    jQuery.each(array, function() {
+      jsonstring[this.name] = this.value || '';
+    });
+    console.log(jsonstring);
+    var dataObject = JSON.stringify(jsonstring);
+    console.log(dataObject);
 
-    <!-- jqueryUI CSS -->
-    <link href="static/jqueryUI/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel="stylesheet">
 
-    <!-- Put Graph CSS reference here when appropriate -->
-    <script src="static/jquery-3.2.1.js"></script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="static/c3.min.js"></script>
-    <link href="static/c3.css" rel="stylesheet">
+//just for testing:
+    //var hardCodedObject = '{"base":"btc","target":"usd","amount":"100"}'
 
-    <!-- Custom styles for this template -->
-    <link href="static/bootstrap-files/css/heroic-features.css" rel="stylesheet">
+    // if(dataObject[1].length() == 3 || dataObject[3].length() == 3){
 
-    <!-- refernce JS documents-->  
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      $.ajax({
+        method: "POST",
+        // url: "http://192.241.142.13:80/getData/",
+        url: "http://localhost:5000/getData",
+        contentType: "application/json",
+        // dataType: "JSON",
+        // data: {"base":"btc","target":"usd","amount":"100"},
+        // data: {"d": dataObject},
+        data: dataObject,
+        error: function(response){
+          console.log("error in ajax call");
+        },
+        success: function(response){
+          console.log("success: ");
+          console.log(response);
 
-      <script type="text/javascript" src="static/main.js"></script>
 
+          // var stringResponse = JSON.parse(response);
+        // $( document.getElementsByClassName('result') ).append(response);
 
-      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+        stringResponse = JSON.stringify(response);
+        stringSymbol = JSON.stringify(array[1]);
+        stringSymbol2 = stringSymbol.substring(stringSymbol.length-5, stringSymbol.length-2);
 
+        document.getElementsByClassName('result')[0].innerHTML = "<BR>= " + stringResponse.substring(8, stringResponse.length-1) + " " + stringSymbol2;
+        
+        // document.getElementsByClassName('container')[0].appendChild(response);
 
-  </head>
 
+          // $( document.getElementById('resultDiv') ).html(response);
+        }
 
+      }).done(function( ) {
+        
+        console.log("done");
 
+      });
 
+    // }
 
-<!--_________________________ white top bar. _________________________--> 
+    // else{
+    //   alert("please enter the 3-character symbol of your currency.");
+    // }
+ 
+  });
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
-      <div class="headerContainer">
-        <a class="navbar-brand" href="#">        
-          <img src="https://i.imgur.com/KhwMigY.png" alt="">
-        </a>
-      </div>
-    </nav>
 
 
 
-<!-- <div class = 'content-box'>>
-  <script>
-    var dateVar =  $( '#date' ).datepicker();
-  </script>
+// _________________________ content box stuff _______________________________________________________
 
-  Enter a currency and date:
+  $( document.getElementById('go-1') ).click(function() {
+    
+    document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-  <form enctype='application/json'>
-    <input type='text' value = 'mm/dd/yyyy' name='date' id = 'dateID'>
-    <input type='text' value = 'Currency' name='historyCurr' id = 'historyCurr'>
+//jquery UI thing that might be useful here
+    // var dateVar =  $( "#date" ).datepicker();
 
-    <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'>
-  </form>
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker();</script>Enter a currency and date:<form enctype='application/json'><input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'dateID'>    <input type='text' placeholder = 'Currency' name='historyCurr' id = 'historyCurr'><input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'button1'></form>    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script></div>");
 
-    <script>$( document.getElementById('dateID') ).click(function() {$(this).select(); });</script>
-    <script>$( document.getElementById('historyCurr') ).click(function() {$(this).select(); });</script>
+  });
 
+  $( document.getElementById('go-2') ).click(function() {
 
+    document.getElementsByClassName('content-box-area')[0].innerHTML = '';
 
-</div> -->
+    $( document.getElementsByClassName('content-box-area') ).append( "<div id = 'chart'></div>");
+  });
 
+  $( document.getElementById('go-3') ).click(function() {
 
-<!--_________________________ big grey box _________________________--> 
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <!-- Jumbotron Header -->
-      <header class="jumbotron my-4">
-        <h1 class="display-3">Need your currency converted?</h1>
-        <p class="lead">Take care of the details here, leaving the fun parts of traveling to you and yours.</p>
-
-
-        <form enctype='application/json'>
-          <input type="text" placeholder = "From" name="base" id = "baseCurr">
-          <input type="text" placeholder = "To" name="target" id = "targetCurr">
-          <br><br>
-          <input type="text" placeholder = "Amount" name="amount" id = "amount">
-          <input class="btn btn-primary btn-lg" type="submit" name="submit" id = "button1">
-        </form>
-
-        <div class="result">result:
-        </div>
-
-      </header>
-
-
-
-
-
-
-
-<!--_________________________ this is the 4 feature options that have the "GO" buttons _________________________--> 
-
-      <!-- Page Features -->
-      <div class="row text-center">
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://i.imgur.com/ggM6z6Z.jpg" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Historical Data</h4>
-              <p class="card-text">Pick a specific date in history and compare prices</p>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" id="go-1">Go!</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://i.imgur.com/7LVJ81l.png" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Graphs</h4>
-              <p class="card-text">Chart currencies against eachother</p>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" id="go-2">Go!</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://i.imgur.com/Xp2oEpO.jpg" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Maps</h4>
-              <p class="card-text">Find the closest currensy conversion point to you</p>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" id="go-3">Go!</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://i.imgur.com/URfjuRg.png" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Travel News</h4>
-              <p class="card-text">Check out updates from the US Dept of state</p>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" id="go-4">Go!</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-
-
-
-
-
-
-<!--_________________________ this is the content box that pops up when useres click "GO" _________________________--> 
-      <div class = "content-box-area">
-      </div>
-
-
-
-
-
-
-<!--_________________________ footer ___________________________________________________________________________--> 
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white"><a href="./index.html"> <img src="https://i.imgur.com/KhwMigY.png" alt="">Back to top</a></p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-
-
-
-
-    <!-- Bootstrap core JavaScript, and jquery UI -->
-    <script src="static/bootstrap-files/vendor/jquery/jquery.min.js"></script>
-    <script src="static/bootstrap-files/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="static/jqueryUI/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-
-
-  </body>
-
-</html>
+    document.getElementsByClassName('content-box-area')[0].innerHTML = '';
+
+
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><iframe src='https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d51705.71556068031!2d-79.07397514277635!3d35.90763429846561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scurrency+exchange!5e0!3m2!1sen!2sus!4v1512932684975' width='800' height='600' align='middle' frameborder='0' style='border:0' allowfullscreen> </iframe></div>");
+
+  });
+
+  $( document.getElementById('go-4') ).click(function() {
+
+    document.getElementsByClassName('content-box-area')[0].innerHTML = '';
+
+    $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'>&nbsp;&nbsp;&nbsp;&nbsp;<iframe width='400' height='400' style='border:none;'' src='http://output15.rssinclude.com/output?type=iframe&amp;id=1164374&amp;hash=92e11872b1c3456f40e011c43086ad7e'></iframe></div>");
+
+  });
+
+
+
+// _________________________ autocomplete _______________________________________________________
+
+  $( function() {
+    var availableTags = [
+      "USD",
+      "EUR",
+      "JPY",
+      "BGN",
+      "CZK",
+      "DKK",
+      "GBP",
+      "HUF",
+      "PLN",
+      "RON",
+      "SEK",
+      "CHF",
+      "NOK",
+      "HRK",
+      "RUB",
+      "TRY",
+      "AUD",
+      "BRL",
+      "CAD",
+      "CNY",
+      "HKD",
+      "IDR",
+      "ILS",
+      "INR",
+      "KRW",
+      "MXN",
+      "MYR",
+      "NZD",
+      "PHP",
+      "SGD",
+      "THB",
+      "ZAR",
+      "BTC",
+    ];
+    $("#baseCurr").autocomplete({
+      source: availableTags
+    });
+    $("#targetCurr").autocomplete({
+      source: availableTags
+    });
+  } );
+  
+  //chart
+// 2 arrays with dummy currency rate info of certain time frame
+// these 2 arrays should be returned by some database access call
+  //  $(function(){
+    $( document.getElementById('go-2') ).click(function() {
+        var currency1 = [10, 20, 30, 40, 50]
+        var currency2 = [5, 20, 40, 55, 60]
+
+//array of dates corresponding to above currency rates
+        var x = ['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04', '2016-01-05']
+
+// Needed for proper format of graph creation
+// Adds currency name to head of array
+        currency1.unshift('currency1');  //currency1 = ['currency1', 10, 20, 30,...]
+        currency2.unshift('currency2');  //currency2 = ['currency2', 5, 20, 40,...]
+
+        x.unshift('x');  //x = ['x', '2016-01-01',....]
+
+        var chart = c3.generate({
+
+            // 'bindto' to specify which html element to add graph to
+            bindto: '#chart',
+            data: {
+                x: 'x',
+                columns: [x, currency1, currency2]
+            },
+            axis: {
+                x: {
+                    type: 'timeseries'
+                }
+            }
+        });
+
+        // Not sure if necessary, just something extra
+        $("#chart").append($("<button id='show'>Show (currency2)</button>"));
+        $("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
+        document.getElementById('show').addEventListener('click', function() {
+            chart.show(['currency2'])
+        });
+        document.getElementById('hide').addEventListener('click', function() {
+            chart.hide(['currency2'])
+        });
+
+    });
+});
