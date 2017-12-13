@@ -185,6 +185,7 @@ $(document).ready(function () {
       data: graphJsonObj2,
       error: function(response) {
         console.log("error graph");
+        console.log("Please enter valid inputs");
       },
       success: function(response) {
         console.log("success graph");
