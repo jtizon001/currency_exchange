@@ -84,6 +84,7 @@ $(document).ready(function () {
 
     $( document.getElementsByClassName('content-box-area') ).append( "<div class = 'content-box'><script>var dateVar =  $( '#date' ).datepicker({changeMonth: true, changeYear: true});</script>Enter 2 currencies and a date, and find out the old exchange rate:<br><form enctype='application/json' id = 'historyForm'><input type='text' placeholder = 'From' name='historyCurrBase' id = 'historyCurrBase'> <input type='text' placeholder = 'To' name='historyCurrTarget' id = 'historyCurrTarget'> <input type='text' placeholder = 'mm/dd/yyyy' name='date' id = 'date'> <input class='btn btn-primary btn-lg' type='submit' name='submit' id = 'historyButton'></form><div id = 'historyResult'></div></div>");
 
+    $( document.getElementsByClassName('content-box-area') ).append("<script>$( function() {var availableTags = ['USD','EUR','JPY','BGN','CZK','DKK','GBP','HUF','PLN','RON','SEK','CHF','NOK','HRK','RUB','TRY','AUD','BRL','CAD','CNY','HKD','IDR','ILS','INR','KRW','MXN','MYR','NZD','PHP','SGD','THB','ZAR','BTC']; $('#historyCurrBase').autocomplete({source: availableTags}); $('#historyCurrTarget').autocomplete({source: availableTags});} );</script>");
 
     $( document.getElementById('historyButton') ).click(function(e) {
       // e.stopPropagation();
