@@ -1,3 +1,3 @@
-# jtizon001.github.io
+# Your Currency Calc
 
-Demo:  https://jtizon001.github.io/
+Demo:  Run "Python app.py" on your server, then navigate to Localhost:5000 in the browser.
