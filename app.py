@@ -60,6 +60,16 @@ def getGraphData():
         currentDict={datestr:[graphBase,graphTarget,rate]}
         if('2016' not in datestr):
           rangeDict.update(currentDict)
+          
+          
+    if(graphRange=='past30Days'):
+    	day=datetime.datetime.today()
+    	for i in range(0,30):
+    		day=day-datetime.timedelta(1)
+    		daystr=day.strftime("%m/%d/%Y")
+    		rate=foreXchange.getHistoric(graphBase,graphTarget,daystr)
+    		currentDict={daystr:[graphBase,graphTarget,rate]}
+    		rangeDict.update(currentDict)
 
 
     dicto={'rate':rangeDict}
