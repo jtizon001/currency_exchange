@@ -161,7 +161,7 @@ $(document).ready(function () {
       var array = $('#graphForm').serializeArray();
       console.log(array);
 
-      var graphJson = {}
+      var graphJson = {};
       jQuery.each(array, function() {
         graphJson[this.name] = this.value || '';
       });
@@ -188,9 +188,25 @@ $(document).ready(function () {
       success: function(response) {
         console.log("success graph");
 
-        
+        console.log(response);
+        //response = {rate: { date: [base, target, rate] } }  ---> {key: { key : value(3)}}
+
+        var dates = [];
+        var rates = [];
+        var base;
+        var target;
+
+        for (key in response) {
+          for (key2 in response[key]) {
+            base = response[key][key2][0];
+            target = response[key][key2][1];
+            dates.push(key2);
+            rates.push(response[key][key2][2]);
+          }
+        }
+
         $( document.getElementsByClassName('content-box-area') ).append( "<div id = 'chart'></div>");
-        makeGraph();
+        makeGraph(dates, rates, base, target);
       }
 
     }).done(function() {
@@ -283,69 +299,11 @@ $(document).ready(function () {
   
   // _________________________ Charts stuff _______________________________________________________
 
-  
-  //chart
-// 2 arrays with dummy currency rate info of certain time frame
-// these 2 arrays should be returned by some database access call
+    var makeGraph = function(dates, currency1, base, target) {
 
-    /*
+      currency1.unshift(target);
 
-    $( document.getElementById('go-2') ).click(function() {
-        var currency1 = [10, 20, 30, 40, 50]
-        var currency2 = [5, 20, 40, 55, 60]
-
-//array of dates corresponding to above currency rates
-        var x = ['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04', '2016-01-05']
-
-// Needed for proper format of graph creation
-// Adds currency name to head of array
-        currency1.unshift('currency1');  //currency1 = ['currency1', 10, 20, 30,...]
-        currency2.unshift('currency2');  //currency2 = ['currency2', 5, 20, 40,...]
-
-        x.unshift('x');  //x = ['x', '2016-01-01',....]
-
-        var chart = c3.generate({
-
-            // 'bindto' to specify which html element to add graph to
-            bindto: '#chart',
-            data: {
-                x: 'x',
-                columns: [x, currency1, currency2]
-            },
-            axis: {
-                x: {
-                    type: 'timeseries'
-                }
-            }
-        });
-
-        // Not sure if necessary, just something extra
-        $("#chart").append($("<button id='show'>Show (currency2)</button>"));
-        $("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
-        document.getElementById('show').addEventListener('click', function() {
-            chart.show(['currency2'])
-        });
-        document.getElementById('hide').addEventListener('click', function() {
-            chart.hide(['currency2'])
-        });
-
-    });
-
-    */
-
-    var makeGraph = function() {
-      var currency1 = [10, 20, 30, 40, 50]
-      var currency2 = [5, 20, 40, 55, 60]
-
-//array of dates corresponding to above currency rates
-      var x = ['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04', '2016-01-05']
-
-// Needed for proper format of graph creation
-// Adds currency name to head of array
-      currency1.unshift('currency1');  //currency1 = ['currency1', 10, 20, 30,...]
-      currency2.unshift('currency2');  //currency2 = ['currency2', 5, 20, 40,...]
-
-      x.unshift('x');  //x = ['x', '2016-01-01',....]
+      dates.unshift('x');
 
       var chart = c3.generate({
 
@@ -353,24 +311,30 @@ $(document).ready(function () {
         bindto: '#chart',
         data: {
           x: 'x',
-          columns: [x, currency1, currency2]
+          xFormat: '%m/%d/%Y',
+          columns: [dates, currency1]
         },
         axis: {
           x: {
-            type: 'timeseries'
+            type: 'timeseries',
+            tick: {
+              format: '%m/%d/%Y'
+            }
           }
         }
       });
 
+      /*
       // Not sure if necessary, just something extra
-      $("#chart").append($("<button id='show'>Show (currency2)</button>"));
-      $("#chart").append($("<button id='hide'>Hide (currency2)</button>"));
+      $("#chart").append($("<button id='show'>Show</button>"));
+      $("#chart").append($("<button id='hide'>Hide</button>"));
       document.getElementById('show').addEventListener('click', function() {
-        chart.show(['currency2'])
+        chart.show(['currency1'])
       });
       document.getElementById('hide').addEventListener('click', function() {
-        chart.hide(['currency2'])
+        chart.hide(['currency1'])
       });
+      */
 
     }
 });
