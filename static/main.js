@@ -35,6 +35,7 @@ $(document).ready(function () {
         data: dataObject,
         error: function(response){
           console.log("error in ajax call");
+          alert("Please enter valid inputs");
         },
         success: function(response){
           console.log("success: ");
