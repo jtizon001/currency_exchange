@@ -309,6 +309,9 @@ $(document).ready(function () {
 
         // 'bindto' to specify which html element to add graph to
         bindto: '#chart',
+        title: {
+          text: 'Conversion Rate for 1 ' + base
+        },
         data: {
           x: 'x',
           xFormat: '%m/%d/%Y',
